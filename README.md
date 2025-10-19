@@ -7,13 +7,6 @@ A modern, intelligent web-based application that analyzes your web browsing habi
 [![Material-UI](https://img.shields.io/badge/Material--UI-5.13.0-blue)](https://mui.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## 🔗 Live Demo
-
-Try it now on Vercel:
-
-- Direct link: https://neura-browse.vercel.app/
-- If the link is unavailable, clone and run locally (instructions below).
-
 ## ✨ Features
 
 ### 🔍 Smart Search Integration
@@ -78,33 +71,6 @@ npm run build
 
 This will create an optimized production build in the `build` folder.
 
-### Available Scripts
-
-In the project directory, you can run:
-
-```bash
-# Start development server
-npm start
-
-# Create production build
-npm run build
-
-# Run tests (if you add tests later)
-npm test
-```
-
-### Deployment (Vercel)
-
-This project can be deployed seamlessly on Vercel:
-
-1. Push your repo to GitHub
-2. Import the repository on Vercel
-3. Build command: `npm run build`
-4. Output directory: `build`
-5. Framework preset: Create React App
-
-Production URL: https://neura-browse.vercel.app/
-
 ## 📖 Usage
 
 1. **Search**: Enter your search query in the search box and press Enter or click the Search button
@@ -125,18 +91,15 @@ neurabrowse/
 │   ├── components/
 │   │   ├── AnalysisDashboard.tsx    # Main dashboard with charts
 │   │   ├── SearchBox.tsx             # Search input component
-│   │   ├── Footer.tsx                # Footer component
-│   │   └── DataManagementDialog.tsx  # Export/Import/Clear data dialog
+│   │   └── Footer.tsx                # Footer component
 │   ├── types/
 │   │   └── index.ts                  # TypeScript interfaces
 │   ├── utils/
-│   │   ├── storage.ts                # Local storage utilities (persist data)
-│   │   ├── analytics.ts              # Analytics and calculations (stats)
-│   │   ├── exportImport.ts           # Data export/import helpers
-│   │   └── animations.ts             # Small animation utilities
+│   │   ├── storage.ts                # Local storage utilities
+│   │   └── analytics.ts              # Analytics and calculations
 │   ├── App.tsx                       # Main app component
 │   ├── index.tsx                     # Entry point
-│   └── custom.d.ts                   # Type definitions for CSS/assets
+│   └── index.css                     # Global styles
 ├── package.json
 ├── tsconfig.json
 └── README.md
@@ -182,13 +145,6 @@ The app automatically categorizes your searches into:
 - Tracks weekly activity
 - Preserves theme preferences
 
-### Privacy & Data
-
-- Your data never leaves your browser
-- No tracking, no analytics scripts, no backend
-- You can export your data as JSON and import it back later
-- A single action lets you permanently clear all stored data
-
 ### Intelligent Suggestions
 - Generates personalized content suggestions based on your top interests
 - Offers 5+ suggestions per interest category
@@ -206,7 +162,7 @@ Contributions are welcome! Here's how you can help:
 
 ## 🐛 Bug Reports & Feature Requests
 
-Please use the [GitHub Issues](https://github.com/beratmen/NeuraBrowse/issues) page to report bugs or request features.
+Please use the [GitHub Issues](https://github.com/beratmen/neurabrowse/issues) page to report bugs or request features.
 
 ## 📝 License
 
@@ -216,26 +172,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Berat MEN**
 - GitHub: [@beratmen](https://github.com/beratmen)
-
-## ❓ FAQ
-
-### Why does the app open Google in a new tab when I search?
-This app is designed to track and analyze your searches while letting you use your preferred search engine (Google). Your query is recorded locally and a Google results page opens for convenience.
-
-### Can I sync my data across devices?
-Not yet. Currently, data is stored in your browser (localStorage). A future enhancement may add optional cloud sync.
-
-### How do I reset everything?
-Open the menu (⋮) in the top-right and choose "Clear All Data".
-
-## 🧰 Troubleshooting
-
-- If the dev server doesn't open automatically, visit http://localhost:3000 manually
-- If you see a blank page, clear your browser cache and reload
-- If charts don't render, ensure all Chart.js peer dependencies are installed
-- For dependency issues, try: `rm -rf node_modules && npm install`
-
----
 
 ## 🙏 Acknowledgments
 
