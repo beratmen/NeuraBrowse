@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { Box, TextField, Button, Paper } from '@mui/material';
+import { Box, TextField, Button, Paper, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
 interface SearchBoxProps {
   onSearch: (query: string) => void;
@@ -8,13 +9,22 @@ interface SearchBoxProps {
 
 const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [isSearching, setIsSearching] = useState<boolean>(false);
 
   const handleSearch = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (searchQuery.trim()) {
+      setIsSearching(true);
       onSearch(searchQuery);
+      
       // Open Google search in a new tab
       window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`, '_blank');
+      
+      // Reset the search query after a short delay
+      setTimeout(() => {
+        setSearchQuery('');
+        setIsSearching(false);
+      }, 500);
     }
   };
 
@@ -23,16 +33,35 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   };
 
   return (
-    <Paper elevation={3} sx={{ p: 2, mb: 4 }}>
+    <Paper 
+      elevation={4} 
+      sx={{ 
+        p: 3, 
+        mb: 4, 
+        borderRadius: 3,
+        background: 'linear-gradient(145deg, rgba(25,118,210,0.05) 0%, rgba(220,0,78,0.05) 100%)',
+      }}
+    >
       <Box component="form" onSubmit={handleSearch} sx={{ display: 'flex', gap: 2 }}>
         <TextField
           fullWidth
           variant="outlined"
-          placeholder="Search the web..."
+          placeholder="Search the web and track your interests..."
           value={searchQuery}
           onChange={handleChange}
+          disabled={isSearching}
           InputProps={{
-            startAdornment: <SearchIcon sx={{ mr: 1, color: 'text.secondary' }} />,
+            startAdornment: (
+              <InputAdornment position="start">
+                <TravelExploreIcon color="primary" />
+              </InputAdornment>
+            ),
+          }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              borderRadius: 2,
+              backgroundColor: 'background.paper',
+            },
           }}
         />
         <Button
@@ -40,9 +69,15 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
           variant="contained"
           color="primary"
           size="large"
+          disabled={isSearching || !searchQuery.trim()}
           startIcon={<SearchIcon />}
+          sx={{ 
+            minWidth: 120,
+            borderRadius: 2,
+            fontWeight: 600,
+          }}
         >
-          Search
+          {isSearching ? 'Searching...' : 'Search'}
         </Button>
       </Box>
     </Paper>
